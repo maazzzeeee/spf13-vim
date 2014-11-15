@@ -4,7 +4,6 @@
 
 Lastly (and perhaps, most importantly) It is completely cross platform. It works well on Windows, Linux and OSX without any modifications or additional configurations. If you are using [MacVim] or Gvim additional features are enabled. So regardless of your environment just clone and run.
 
-# Installation
 ```bash
 
     sh <(http://goo.gl/oJ7avq -L)
