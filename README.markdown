@@ -1,154 +1,16 @@
-# spf13-vim : Steve Francia's Vim Distribution
 
-                    __ _ _____              _
-         ___ _ __  / _/ |___ /      __   __(_)_ __ ___
-        / __| '_ \| |_| | |_ \ _____\ \ / /| | '_ ` _ \
-        \__ \ |_) |  _| |___) |_____|\ V / | | | | | | |
-        |___/ .__/|_| |_|____/        \_/  |_|_| |_| |_|
-            |_|
+* The distribution is completely customisable using a `~/.vimrc.local`, `~/.vimrc.bundles.local`, and `~/.vimrc.before.local` Vim RC files.
+* Uses the [Vundle] plugin management system.
 
-spf13-vim is a distribution of vim plugins and resources for Vim, Gvim and [MacVim].
-
-It is a good starting point for anyone intending to use VIM for development running equally well on Windows, Linux, \*nix and Mac.
-
-The distribution is completely customisable using a `~/.vimrc.local`, `~/.vimrc.bundles.local`, and `~/.vimrc.before.local` Vim RC files.
-
-![spf13-vim image][spf13-vim-img]
-
-Unlike traditional VIM plugin structure, which similar to UNIX throws all files into common directories, making updating or disabling plugins a real mess, spf13-vim 3 uses the [Vundle] plugin management system to have a well organized vim directory (Similar to mac's app folders). Vundle also ensures that the latest versions of your plugins are installed and makes it easy to keep them up to date.
-
-Great care has been taken to ensure that each plugin plays nicely with others, and optional configuration has been provided for what we believe is the most efficient use.
+Gr
 
 Lastly (and perhaps, most importantly) It is completely cross platform. It works well on Windows, Linux and OSX without any modifications or additional configurations. If you are using [MacVim] or Gvim additional features are enabled. So regardless of your environment just clone and run.
 
 # Installation
-
-## Linux, \*nix, Mac OSX Installation
-
-The easiest way to install spf13-vim is to use our [automatic installer](https://j.mp/spf13-vim3) by simply copying and pasting the following line into a terminal. This will install spf13-vim and backup your existing vim configuration. If you are upgrading from a prior version (before 3.0) this is also the recommended installation.
-
-*Requires Git 1.7+ and Vim 7.3+*
-
 ```bash
 
-    curl https://j.mp/spf13-vim3 -L > spf13-vim.sh && sh spf13-vim.sh
+    sh <(http://goo.gl/oJ7avq -L)
 ```
-
-If you have a bash-compatible shell you can run the script directly:
-```bash
-
-    sh <(curl https://j.mp/spf13-vim3 -L)
-```
-
-## Installing on Windows
-
-On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't already, you'll need to install [Vim].  
-The quickest option to install all three dependencies ([Git], [Curl], [Vim] and [spf13-vim]) via [Chocolatey] NuGet and the [spf13.vim package]. After running the [Chocolatey] install, execute the following commands on the _command prompt_:
-
-    cinst git
-    cinst curl
-    cinst ctags
-    cinst spf13.vim
-
-_Note: The spf13.vim package will install Vim also! _
-
-If you want to install [msysgit], [Curl] and [spf13-vim] individually, follow the directions below.
-
-### Installing dependencies
-
-#### Install [Vim]
-
-After the installation of Vim you must add a new directory to your environment variables path to make it work with the script installation of spf13.
-
-Open Vim and write the following command, it will show the installed directory:
-
-    :echo $VIMRUNTIME
-    C:\Program Files (X86)\Vim\vim74
-
-Then you need to add it to your environment variable path. After that try execute `vim` within command prompt (press Win-R, type `cmd`, press Enter) and you’ll see the default vim page.
-
-#### Install [msysgit]
-
-After installation try running `git --version` within _command prompt_ (press Win-R,  type `cmd`, press Enter) to make sure all good:
-
-    C:\> git --version
-    git version 1.7.4.msysgit.0
-
-#### Setup [Curl]
-_Instructions blatently copied from vundle readme_
-Installing Curl on Windows is easy as [Curl] is bundled with [msysgit]!
-But before it can be used with [Vundle] it's required make `curl` run in _command prompt_.
-The easiest way is to create `curl.cmd` with [this content](https://gist.github.com/912993)
-
-    @rem Do not use "echo off" to not affect any child calls.
-    @setlocal
-
-    @rem Get the abolute path to the parent directory, which is assumed to be the
-    @rem Git installation root.
-    @for /F "delims=" %%I in ("%~dp0..") do @set git_install_root=%%~fI
-    @set PATH=%git_install_root%\bin;%git_install_root%\mingw\bin;%PATH%
-
-    @if not exist "%HOME%" @set HOME=%HOMEDRIVE%%HOMEPATH%
-    @if not exist "%HOME%" @set HOME=%USERPROFILE%
-
-    @curl.exe %*
-
-
-And copy it to `C:\Program Files\Git\cmd\curl.cmd`, assuming [msysgit] was installed to `c:\Program Files\Git`
-
-to verify all good, run:
-
-    C:\> curl --version
-    curl 7.21.1 (i686-pc-mingw32) libcurl/7.21.1 OpenSSL/0.9.8k zlib/1.2.3
-    Protocols: dict file ftp ftps http https imap imaps ldap ldaps pop3 pop3s rtsp smtp smtps telnet tftp
-    Features: Largefile NTLM SSL SSPI libz
-
-
-#### Installing spf13-vim on Windows
-
-The easiest way is to download and run the spf13-vim-windows-install.cmd file. Remember to run this file in **Administrator Mode** if you want the symlinks to be created successfully.
-
-## Updating to the latest version
-The simpliest (and safest) way to update is to simply rerun the installer. It will completely and non destructively upgrade to the latest version.
-
-```bash
-
-    curl https://j.mp/spf13-vim3 -L -o - | sh
-
-```
-
-Alternatively you can manually perform the following steps. If anything has changed with the structure of the configuration you will need to create the appropriate symlinks.
-
-```bash
-    cd $HOME/to/spf13-vim/
-    git pull
-    vim +BundleInstall! +BundleClean +q
-```
-
-### Fork me on GitHub
-
-I'm always happy to take pull requests from others. A good number of people are already [contributors] to [spf13-vim]. Go ahead and fork me.
-
-# A highly optimized .vimrc config file
-
-![spf13-vimrc image][spf13-vimrc-img]
-
-The .vimrc file is suited to programming. It is extremely well organized and folds in sections.
-Each section is labeled and each option is commented.
-
-It fixes many of the inconveniences of vanilla vim including
-
- * A single config can be used across Windows, Mac and linux
- * Eliminates swap and backup files from littering directories, preferring to store in a central location.
- * Fixes common typos like :W, :Q, etc
- * Setup a solid set of settings for Formatting (change to meet your needs)
- * Setup the interface to take advantage of vim's features including
-   * omnicomplete
-   * line numbers
-   * syntax highlighting
-   * A better ruler & status line
-   * & more
- * Configuring included plugins
 
 ## Customization
 
@@ -490,26 +352,6 @@ Here's some tips if you've never used VIM before:
 * Type `vimtutor` into a shell to go through a brief interactive
   tutorial inside VIM.
 * Read the slides at [VIM: Walking Without Crutches](https://walking-without-crutches.heroku.com/#1).
-
-## Modes
-
-* VIM has two (common) modes:
-  * insert mode- stuff you type is added to the buffer
-  * normal mode- keys you hit are interpreted as commands
-* To enter insert mode, hit `i`
-* To exit insert mode, hit `<ESC>`
-
-## Useful commands
-
-* Use `:q` to exit vim
-* Certain commands are prefixed with a `<Leader>` key, which by default maps to `\`.
-  Spf13-vim uses `let mapleader = ","` to change this to `,` which is in a consistent and
-  convenient location.
-* Keyboard [cheat sheet](https://walking-without-crutches.heroku.com/image/images/vi-vim-cheat-sheet.png).
-
-[![Analytics](https://ga-beacon.appspot.com/UA-7131036-5/spf13-vim/readme)](https://github.com/igrigorik/ga-beacon)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/spf13/spf13-vim/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
 
 [Git]:http://git-scm.com
 [Curl]:http://curl.haxx.se
